@@ -1,0 +1,12 @@
+{
+    "name": "sergetcherepanov/salesgrid",
+    "type": "magento2-module",
+    "description": "Extra Columns in Sales Order Grid",
+    "version": "1.0.1",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Sergeycherepanov\\Salesgrid\\": ""
+        }
+    }
+}

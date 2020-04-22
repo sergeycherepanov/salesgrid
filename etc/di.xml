@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="sergeycherepanov_salesgrid_refresh" xsi:type="object">Sergeycherepanov\Salesgrid\Console\RefreshSalesGridCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="sergeycherepanov_salesgrid_columns" type="Sergeycherepanov\Salesgrid\Plugin\UiComponent\DataProvider\CollectionFactoryPlugin" sortOrder="10" disabled="false" />
+    </type>
+    <type name="Sergeycherepanov\Salesgrid\Console\RefreshSalesGridCommand">
+        <arguments>
+            <argument name="grid" xsi:type="object">Sergeycherepanov\Salesgrid\Model\ResourceModel\Order\Grid</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\GridPool">
+        <arguments>
+            <argument name="grids" xsi:type="array">
+                <item name="sergeycherepanov_salesgrid_order_grid" xsi:type="object">Sergeycherepanov\Salesgrid\Model\ResourceModel\Order\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Sergeycherepanov\Salesgrid\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="mainTableName" xsi:type="string">sales_order</argument>
+            <argument name="gridTableName" xsi:type="string">sergeycherepanov_salesgrid_order_grid</argument>
+            <argument name="orderIdField" xsi:type="string">sales_order.entity_id</argument>
+            <argument name="columns" xsi:type="array">
+                <item name="entity_id" xsi:type="string">sales_order.entity_id</item>
+                <item name="discount_amount" xsi:type="string">sales_order.discount_amount</item>
+                <item name="coupon_code" xsi:type="string">sales_order.coupon_code</item>
+            </argument>
+            <argument name="notSyncedDataProvider" xsi:type="object">Magento\Sales\Model\ResourceModel\Provider\NotSyncedOrderDataProvider</argument>
+        </arguments>
+    </virtualType>
+</config>

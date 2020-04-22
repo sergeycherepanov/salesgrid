@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="coupon_code">
+            <settings>
+                <label translate="true">Coupon Code</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="discount_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <settings>
+                <label translate="true">Discount Amount</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+    </columns>
+</listing>
